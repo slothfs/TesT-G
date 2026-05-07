@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bv03ibeaysrpy"]
+
+[ext_resource type="PackedScene" path="res://parallax_cave.tscn" id="1_6hpv2"]
+[ext_resource type="Script" uid="uid://bjkbniaq5ywsh" path="res://Scenes/TEST/character_body_2d.gd" id="2_hoa5q"]
+[ext_resource type="Texture2D" uid="uid://ckog76iuavkb3" path="res://icon.svg" id="3_yq8lr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ysyh8"]
+radius = 64.84597
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg1ym"]
+size = Vector2(5225, 41)
+
+[node name="test" type="Node2D" unique_id=2115318920]
+
+[node name="ParallaxCave" parent="." unique_id=1598418328 instance=ExtResource("1_6hpv2")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=208464004]
+position = Vector2(158, 960)
+script = ExtResource("2_hoa5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1164908785]
+texture = ExtResource("3_yq8lr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=43401824]
+shape = SubResource("CircleShape2D_ysyh8")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1339838828]
+position = Vector2(781, -387)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1846481963]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=843316256]
+position = Vector2(2581, 1101)
+shape = SubResource("RectangleShape2D_eg1ym")

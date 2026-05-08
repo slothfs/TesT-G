@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://3l5ndnqh4fsn"]
 
 [ext_resource type="Texture2D" uid="uid://ckog76iuavkb3" path="res://icon.svg" id="2_k4pdh"]
-[ext_resource type="Script" uid="uid://bjkbniaq5ywsh" path="res://Scenes/TEST/character_body_2d.gd" id="3_7y4xj"]
-[ext_resource type="PackedScene" path="res://parallax_cave.tscn" id="3_k4pdh"]
+[ext_resource type="PackedScene" uid="uid://bq5pv7ytkc0xj" path="res://Scenes/Players/player.tscn" id="3_7y4xj"]
+[ext_resource type="PackedScene" uid="uid://dba5xbnpqm5mh" path="res://Scenes/BG/parallax_cave.tscn" id="3_k4pdh"]
+[ext_resource type="Script" uid="uid://bjkbniaq5ywsh" path="res://Scenes/Players/character_body_2d.gd" id="4_7y4xj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3emyu"]
 size = Vector2(143, 137)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wys1v"]
-radius = 145.34097
-
 [node name="test" type="Node2D" unique_id=305976071]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1821912619]
+position = Vector2(-422, -494)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=302726712]
 modulate = Color(0, 0, 0, 1)
@@ -25,20 +24,13 @@ position = Vector2(4415, 1649)
 scale = Vector2(68.789, 1.578)
 shape = SubResource("RectangleShape2D_3emyu")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=347257084]
-script = ExtResource("3_7y4xj")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1358797454]
-position = Vector2(1289, 611)
-zoom = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=818648402]
-position = Vector2(279, 1371)
-scale = Vector2(2, 2)
-texture = ExtResource("2_k4pdh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=196766187]
-position = Vector2(271, 1359)
-shape = SubResource("CircleShape2D_wys1v")
-
 [node name="ParallaxCave" parent="." unique_id=1598418328 instance=ExtResource("3_k4pdh")]
+
+[node name="Player" parent="." unique_id=231210297 instance=ExtResource("3_7y4xj")]
+position = Vector2(1497, 889)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("4_7y4xj")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=776551565]
+position = Vector2(184, -586)
+zoom = Vector2(2, 2)

@@ -1,14 +1,13 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://hxu881rmnd8j"]
 
-[ext_resource type="Script" path="res://Scenes/Player_Attacks/m_1.gd" id="1_86wo4"]
-[ext_resource type="Texture2D" path="res://assets/VFX/lighting.png" id="1_b6g5n"]
-[ext_resource type="Shader" path="res://Scenes/Player_Attacks/m1_alive.gdshader" id="2_oj2q4"]
+[ext_resource type="Script" uid="uid://bq8xtlfy8t3oh" path="res://Scenes/Player_Attacks/m_1.gd" id="1_86wo4"]
+[ext_resource type="Texture2D" uid="uid://bnrbrksww8e5" path="res://assets/VFX/lighting.png" id="1_b6g5n"]
+[ext_resource type="Shader" uid="uid://b3bku7sykqhs1" path="res://Scenes/Player_Attacks/m1_alive.gdshader" id="2_oj2q4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_282gq"]
 shader = ExtResource("2_oj2q4")
-shader_parameter/tint_color = Color(1.5, 1.5, 2.5, 1)
 shader_parameter/time_speed = 15.0
-shader_parameter/distortion = 0.03
+shader_parameter/distortion = 0.01
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86wo4"]
 atlas = ExtResource("1_b6g5n")
@@ -49,6 +48,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25kgd"]
 size = Vector2(218, 16)
 
+[sub_resource type="Gradient" id="Gradient_oj2q4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_282gq"]
+gradient = SubResource("Gradient_oj2q4")
+fill_to = Vector2(0, 0.013157895)
+
 [node name="M1" type="Area2D" unique_id=210528635]
 script = ExtResource("1_86wo4")
 
@@ -66,3 +71,11 @@ position = Vector2(2, 2)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_25kgd")
 debug_color = Color(0.75947636, 0.44874114, 0.17630616, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=992000208]
+position = Vector2(8, 0.99999976)
+scale = Vector2(2.375, 0.265625)
+energy = 2.15
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_282gq")

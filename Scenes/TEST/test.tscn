@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://3l5ndnqh4fsn"]
 
 [ext_resource type="PackedScene" uid="uid://bh2cslina4cj5" path="res://Scenes/TEST/static_platform.tscn" id="3_3emyu"]
-[ext_resource type="PackedScene" uid="uid://bq5pv7ytkc0xj" path="res://Scenes/Players/player.tscn" id="3_7y4xj"]
+[ext_resource type="PackedScene" path="res://Scenes/Players/player.tscn" id="3_7y4xj"]
 [ext_resource type="PackedScene" uid="uid://dba5xbnpqm5mh" path="res://Scenes/BG/parallax_cave.tscn" id="3_k4pdh"]
+[ext_resource type="PackedScene" uid="uid://deoyedwt4vihx" path="res://Scenes/Enemies/s_1.tscn" id="4_7y4xj"]
 
 [sub_resource type="Gradient" id="Gradient_k4pdh"]
 
@@ -37,3 +38,7 @@ texture_scale = 1.58
 
 [node name="StaticPlatform" parent="." unique_id=1026661311 instance=ExtResource("3_3emyu")]
 position = Vector2(4, 1096)
+
+[node name="S1" parent="." unique_id=495046375 instance=ExtResource("4_7y4xj")]
+position = Vector2(2252, 971)
+scale = Vector2(0.5, 0.5)

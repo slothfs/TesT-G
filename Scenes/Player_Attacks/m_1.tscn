@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Player_Attacks/m_1.gd" id="1_86wo4"]
+[ext_resource type="Texture2D" path="res://assets/VFX/lighting.png" id="1_b6g5n"]
+[ext_resource type="Shader" path="res://Scenes/Player_Attacks/m1_alive.gdshader" id="2_oj2q4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_282gq"]
+shader = ExtResource("2_oj2q4")
+shader_parameter/tint_color = Color(1.5, 1.5, 2.5, 1)
+shader_parameter/time_speed = 15.0
+shader_parameter/distortion = 0.03
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86wo4"]
+atlas = ExtResource("1_b6g5n")
+region = Rect2(0, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj2q4"]
+atlas = ExtResource("1_b6g5n")
+region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_282gq"]
+atlas = ExtResource("1_b6g5n")
+region = Rect2(512, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u83d"]
+atlas = ExtResource("1_b6g5n")
+region = Rect2(768, 0, 256, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ppo53"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86wo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj2q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_282gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u83d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25kgd"]
+size = Vector2(218, 16)
+
+[node name="M1" type="Area2D" unique_id=210528635]
+script = ExtResource("1_86wo4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=372077318]
+texture_filter = 1
+material = SubResource("ShaderMaterial_282gq")
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ppo53")
+autoplay = "default"
+frame_progress = 0.36682644
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=400203374]
+position = Vector2(2, 2)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_25kgd")
+debug_color = Color(0.75947636, 0.44874114, 0.17630616, 0.41960785)

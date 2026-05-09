@@ -85,3 +85,4 @@ texture = ExtResource("9_8ue2x")
 centered = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1303969034]
+color = Color(0.47866166, 0.47866172, 0.47866166, 1)

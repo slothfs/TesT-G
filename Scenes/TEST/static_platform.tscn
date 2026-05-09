@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bh2cslina4cj5"]
+
+[ext_resource type="Texture2D" uid="uid://ckxts0svw20ai" path="res://assets/Blocks/New Piskel-1.png.png" id="1_27640"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60fwe"]
+size = Vector2(31.991316, 19.904762)
+
+[node name="StaticPlatform" type="StaticBody2D" unique_id=1026661311]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1245190859]
+position = Vector2(7356.5, 26)
+scale = Vector2(460.78128, 2.6249998)
+texture = ExtResource("1_27640")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=796832712]
+position = Vector2(7369, -8)
+scale = Vector2(460.78128, 2.6249995)
+shape = SubResource("RectangleShape2D_60fwe")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1086392391]
+color = Color(0.2585664, 0.2585664, 0.25856638, 1)

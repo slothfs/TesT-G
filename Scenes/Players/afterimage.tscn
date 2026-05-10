@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bgfc4wak843f8"]
+
+[ext_resource type="Script" uid="uid://b6cpcheik02pn" path="res://afterimage.gd" id="1_8l11p"]
+[ext_resource type="Texture2D" uid="uid://dd547u04ovim1" path="res://assets/Main_Player/PNG Sequences/Taunt/Wraith_03_Taunt_000.png" id="2_xkv0m"]
+
+[node name="Afterimage" type="Node2D" unique_id=1401373924]
+script = ExtResource("1_8l11p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1266399213]
+texture = ExtResource("2_xkv0m")

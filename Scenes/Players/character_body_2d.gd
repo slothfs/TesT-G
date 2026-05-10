@@ -14,6 +14,9 @@ var afterimage_scene = preload("res://Scenes/Players/afterimage.tscn")
 @export var afterimage_delay := 0.03
 
 @onready var anim = $AnimatedSprite2D
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
+
+const GRAPPLING = preload("uid://bvy37v27yal2d")
 
 var is_busy := false
 
@@ -32,6 +35,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	_set_ray_cast_direction()
 
 	# Gravity
 	if not is_on_floor():
@@ -208,3 +212,6 @@ func create_afterimage_trail():
 	for i in range(afterimage_count):
 		spawn_afterimage()
 		await get_tree().create_timer(afterimage_delay).timeout
+		
+		
+func _set_ray

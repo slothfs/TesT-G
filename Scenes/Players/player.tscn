@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqai6rwkwqq8o"]
 
 [ext_resource type="Texture2D" uid="uid://bsbpyofw27emv" path="res://assets/Main_Player/PNG Sequences/Idle Blink/Wraith_03_Idle Blinking_000.png" id="1_j8xm3"]
-[ext_resource type="Script" uid="uid://bjkbniaq5ywsh" path="res://Scenes/Players/character_body_2d.gd" id="1_r5bcf"]
+[ext_resource type="Script" uid="uid://4y6lr1l1h5nx" path="res://Scenes/Players/character_body_2d.gd" id="1_r5bcf"]
 [ext_resource type="PackedScene" uid="uid://hxu881rmnd8j" path="res://Scenes/Player_Attacks/m_1.tscn" id="2_0iim1"]
 [ext_resource type="Texture2D" uid="uid://dsyp3fxn68gog" path="res://assets/Main_Player/PNG Sequences/Idle Blink/Wraith_03_Idle Blinking_001.png" id="2_r5bcf"]
 [ext_resource type="Texture2D" uid="uid://ibk8dw8plap5" path="res://assets/Main_Player/PNG Sequences/Attacking/Wraith_03_Attack_000.png" id="2_uisqi"]
@@ -700,14 +700,9 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=231210297 groups=["player"]]
 script = ExtResource("1_r5bcf")
-speed = null
-jump_force = null
-gravity = null
-fast_fall_speed = null
 projectile_scene = ExtResource("2_0iim1")
 buff_scene = ExtResource("3_5b3eu")
-afterimage_count = null
-afterimage_delay = null
+grapple_max_length = 5000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=199876495]
 sprite_frames = SubResource("SpriteFrames_4oyq7")

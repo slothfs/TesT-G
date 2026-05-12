@@ -74,7 +74,7 @@ func attack():
 	match attack_num:
 
 		0:
-			play_anim("attack")
+			play_anim("attacking")
 			velocity.x = dir * 120
 			await get_tree().create_timer(0.4).timeout
 			velocity.x = 0

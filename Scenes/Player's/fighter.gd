@@ -1,0 +1,301 @@
+extends CharacterBody2D
+class_name Fighter
+
+const SPEED := 250.0
+const JUMP_FORCE := -400.0
+const DASH_SPEED := 700.0
+const DASH_TIME := 0.15
+const COMBO_TIME := 0.35
+const ATTACK_FRICTION := 1200.0
+
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var health := 100
+
+var attacking := false
+var dashing := false
+var hurt := false
+var dead := false
+
+var combo := 0
+var combo_timer := 0.0
+var queued_attack := false
+
+var dash_timer := 0.0
+var dash_direction := 1.0
+
+var max_jumps := 2
+var jumps_left := 2
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	_setup_animations()
+	_setup_inputs()
+
+	sprite.animation_finished.connect(_on_animation_finished)
+
+func _physics_process(delta: float) -> void:
+
+	if dead:
+		velocity.y += gravity * delta
+		move_and_slide()
+		return
+
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	else:
+		jumps_left = max_jumps
+
+	if combo_timer > 0.0:
+		combo_timer -= delta
+
+		if combo_timer <= 0.0:
+			combo = 0
+
+	if hurt:
+		velocity.x = move_toward(velocity.x, 0.0, SPEED * delta * 10.0)
+		move_and_slide()
+		return
+
+	if dashing:
+		_handle_dash(delta)
+		move_and_slide()
+		return
+
+	_handle_jump()
+	_handle_dash_input()
+	_handle_attack_input()
+
+	if attacking:
+		velocity.x = move_toward(velocity.x, 0.0, ATTACK_FRICTION * delta)
+		move_and_slide()
+		return
+
+	var direction := Input.get_axis("move_left", "move_right")
+
+	if direction != 0:
+		velocity.x = direction * SPEED
+		sprite.flip_h = direction < 0
+	else:
+		velocity.x = move_toward(velocity.x, 0.0, SPEED)
+
+	_update_animation(direction)
+
+	move_and_slide()
+
+func _handle_jump() -> void:
+
+	if Input.is_action_just_pressed("jump") and jumps_left > 0:
+
+		velocity.y = JUMP_FORCE
+		jumps_left -= 1
+
+		sprite.play("jump")
+		sprite.set_frame(0)
+
+func _handle_dash_input() -> void:
+
+	if Input.is_action_just_pressed("dash") and not attacking:
+
+		dashing = true
+		dash_timer = DASH_TIME
+		dash_direction = -1.0 if sprite.flip_h else 1.0
+
+		sprite.play("dash")
+
+func _handle_dash(delta: float) -> void:
+
+	dash_timer -= delta
+
+	velocity.y = 0.0
+	velocity.x = dash_direction * DASH_SPEED
+
+	if Input.is_action_just_pressed("attack1"):
+
+		dashing = false
+		attacking = true
+		combo = 0
+
+		sprite.play("dash_attack")
+		return
+
+	if dash_timer <= 0.0:
+		dashing = false
+
+func _handle_attack_input() -> void:
+
+	if Input.is_action_just_pressed("attack1"):
+
+		if attacking:
+			queued_attack = true
+			return
+
+		_start_attack()
+
+	if Input.is_action_just_pressed("attack2") and not attacking:
+
+		attacking = true
+		combo = 0
+
+		sprite.play("front_attackM2")
+
+func _start_attack() -> void:
+
+	attacking = true
+	combo_timer = 0.0
+
+	if Input.is_action_pressed("move_up"):
+
+		sprite.play("up_attack")
+		combo = 0
+		return
+
+	if Input.is_action_pressed("move_down"):
+
+		sprite.play("down_attack")
+		combo = 0
+		return
+
+	match combo:
+
+		0:
+			sprite.play("front_attackM1")
+			combo = 1
+
+		1:
+			sprite.play("front_attackM2")
+			combo = 2
+
+		2:
+			sprite.play("idle_attack")
+			combo = 0
+
+func take_damage(amount: int) -> void:
+
+	if dead:
+		return
+
+	health -= amount
+
+	attacking = false
+	dashing = false
+	queued_attack = false
+	combo = 0
+
+	if health <= 0:
+
+		dead = true
+		sprite.play("dead")
+		return
+
+	hurt = true
+	sprite.play("hurt")
+
+func _update_animation(direction: float) -> void:
+
+	if attacking or dashing or hurt or dead:
+		return
+
+	if not is_on_floor():
+
+		if velocity.y < 0:
+			sprite.play("jump")
+		else:
+			sprite.play("fall")
+
+		return
+
+	if direction != 0:
+		sprite.play("run")
+	else:
+		sprite.play("idle")
+
+func _on_animation_finished() -> void:
+
+	print(sprite.animation + " finished")
+
+	match sprite.animation:
+
+		"hurt":
+			hurt = false
+
+		"front_attackM1", "front_attackM2", "idle_attack", "up_attack", "down_attack", "dash_attack":
+
+			attacking = false
+
+			if queued_attack:
+
+				queued_attack = false
+				_start_attack()
+
+			else:
+				combo_timer = COMBO_TIME
+
+		"dash", "dash_a":
+			dashing = false
+
+func _setup_animations() -> void:
+
+	var non_looping = [
+		"front_attackM1",
+		"front_attackM2",
+		"idle_attack",
+		"up_attack",
+		"down_attack",
+		"dash",
+		"dash_attack",
+		"dash_a",
+		"hurt",
+		"dead"
+	]
+
+	for anim_name in non_looping:
+
+		if sprite.sprite_frames.has_animation(anim_name):
+			sprite.sprite_frames.set_animation_loop(anim_name, false)
+
+func _setup_inputs() -> void:
+
+	_add_key("move_left", KEY_A)
+	_add_key("move_right", KEY_D)
+	_add_key("move_up", KEY_W)
+	_add_key("move_down", KEY_S)
+
+	_add_key("jump", KEY_SPACE)
+	_add_key("dash", KEY_SHIFT)
+
+	_add_mouse("attack1", MOUSE_BUTTON_LEFT)
+	_add_mouse("attack2", MOUSE_BUTTON_RIGHT)
+
+func _add_key(action: String, key: Key) -> void:
+
+	if InputMap.has_action(action):
+		return
+
+	InputMap.add_action(action)
+
+	var event := InputEventKey.new()
+	event.physical_keycode = key
+
+	InputMap.action_add_event(action, event)
+
+func _add_mouse(action: String, button: MouseButton) -> void:
+
+	if InputMap.has_action(action):
+		return
+
+	InputMap.add_action(action)
+
+	var event := InputEventMouseButton.new()
+	event.button_index = button
+
+	InputMap.action_add_event(action, event)
+
+func set_locked(state: bool):
+	$CollisionShape2D.disabled = state
+	visible = not state
+	
+	# stop movement when locked
+	if state:
+		velocity = Vector2.ZERO

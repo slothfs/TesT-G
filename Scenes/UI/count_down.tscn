@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dgo57p44otsg0"]
+
+[ext_resource type="FontFile" uid="uid://c4pqc7nm1cwe8" path="res://assets/bloody_spooky/Bloody Spooky.ttf" id="1_6dh30"]
+[ext_resource type="Script" uid="uid://2qw7xo0nvf0d" path="res://Scenes/UI/count_down.gd" id="1_x4l84"]
+
+[node name="CountDown" type="CanvasLayer" unique_id=965068187]
+script = ExtResource("1_x4l84")
+
+[node name="Label" type="Label" parent="." unique_id=1430611779]
+process_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_top = 19.0
+offset_right = 312.0
+offset_bottom = 359.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.5622999, 0.4987527, 1)
+theme_override_fonts/font = ExtResource("1_6dh30")
+theme_override_font_sizes/font_size = 120
+text = "TIMER"

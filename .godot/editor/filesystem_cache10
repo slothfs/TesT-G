@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1779365523
+::res://::1779370025
 README.md::TextFile::-1::1779286475::0::1::::<><><>0<>0<><>::
 ::res://addons/::1779365510
 ::res://addons/godot_super-wakatime/::1779286475
@@ -10,8 +10,11 @@ godot_super-wakatime.gd::GDScript::6277149880384411866::1779286475::0::1::::<>Ed
 plugin.cfg::TextFile::-1::1779286475::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1779286475::0::1::::<><><>0<>0<><>::
 utils.gd::GDScript::5251015809120159908::1779286475::0::1::::<>RefCounted<><>0<>0<><>::
-::res://assets/::1779365448
+::res://assets/::1779370145
 b.png::CompressedTexture2D::4478453333101168724::1779287319::1779287336::1::::<><><>0<>0<>a3e76be61adb951f81c8c57f644d4596<>res://.godot/imported/b.png-0b0700e788dcf7e9790e1b9ea823e5b2.ctex::
+bg.jpg::CompressedTexture2D::5371398956446437701::1779367239::1779367243::1::::<><><>0<>0<>6879c997283e798c9882685f69869bce<>res://.godot/imported/bg.jpg-fd17eeede633c0b14296fbdda0ab8221.ctex::
+::res://assets/bloody_spooky/::1779370143
+Bloody Spooky.ttf::FontFile::6840260244081847153::1779370143::1779370150::1::::<><><>0<>0<>98343db1241bf6a6f267154e9e07c47b<>res://.godot/imported/Bloody Spooky.ttf-6fbb1bd1b3e5e7f6d4cc75e3beefc708.fontdata::
 ::res://assets/Player/::1779365411
 1 - Idle.png::CompressedTexture2D::207277224255141672::1759743936::1779285491::1::::<><><>0<>0<>0785e49e61bf23759a4caba5c7d7d871<>res://.godot/imported/1 - Idle.png-aab12dc6ee311dcef5b4499d9210146a.ctex::
 2 - Run.png::CompressedTexture2D::7757371154292374744::1759743972::1779285491::1::::<><><>0<>0<>3b03b1be1c16edc16e1201003a3c86e8<>res://.godot/imported/2 - Run.png-a690a174a8bdea3bfc6034a6c4eb4437.ctex::
@@ -29,25 +32,30 @@ b.png::CompressedTexture2D::4478453333101168724::1779287319::1779287336::1::::<>
 14 - hit.png::CompressedTexture2D::3534666282242941766::1759744327::1779285491::1::::<><><>0<>0<>4aa3bccb0f8c777503548dbbbe8e5408<>res://.godot/imported/14 - hit.png-a6ba33988fbca691cb533b0e8f866248.ctex::
 15 - death.png::CompressedTexture2D::2083548776368658212::1759744373::1779285491::1::::<><><>0<>0<>95414b3c0de5ab223a98a4a5369a5418<>res://.godot/imported/15 - death.png-0b53beea5ded50dfa9109fff3fa2cdca.ctex::
 ::res://assets/Player2/::1779365411
-::res://assets/Player2/Idel Animation 48x48/::1706937462
+::res://assets/Player2/Idel Animation 48x48/::1779365524
 Idel Animation 48x48.png::CompressedTexture2D::3117281315483635649::1706937462::1779365524::1::::<><><>0<>0<>da030efa12ea4582f749c995e164b6ac<>res://.godot/imported/Idel Animation 48x48.png-6c427a0db1463ebdfff651fa1dd3ab89.ctex::
-::res://assets/Player2/Jump Animation 48x48/::1706937473
+::res://assets/Player2/Jump Animation 48x48/::1779365524
 Jump Animation 48x48.png::CompressedTexture2D::3332521860137116559::1706937473::1779365524::1::::<><><>0<>0<>351a266ba13ce50e98cf720983c15c7c<>res://.godot/imported/Jump Animation 48x48.png-fa437dcc94d571bfd7fe48ada6053496.ctex::
-::res://assets/Player2/Ledge Climb Animation 64x64/::1706937484
+::res://assets/Player2/Ledge Climb Animation 64x64/::1779365524
 Ledge Climb Animation 64x64.png::CompressedTexture2D::1474770504901388774::1706937484::1779365524::1::::<><><>0<>0<>18d10143e99234955f1e6749a86929e6<>res://.godot/imported/Ledge Climb Animation 64x64.png-22b6cedc83abc8722aa5f997f276ff92.ctex::
-::res://assets/Player2/Push Animation 48x48/::1706937492
+::res://assets/Player2/Push Animation 48x48/::1779365524
 Push Animation 48x48.png::CompressedTexture2D::7321229354060719857::1706937492::1779365524::1::::<><><>0<>0<>8825b850059f963ef7744057fde075d6<>res://.godot/imported/Push Animation 48x48.png-bb7058c89fedc57bea1f5a2d973ec8ad.ctex::
-::res://assets/Player2/Run Animation 48x48/::1706937502
+::res://assets/Player2/Run Animation 48x48/::1779365524
 Run Animation 48x48.png::CompressedTexture2D::4926420041908301104::1706967162::1779365524::1::::<><><>0<>0<>e10f82edef4cde95d6201ef6e9715ed8<>res://.godot/imported/Run Animation 48x48.png-9cfb6395801f4de0ac4ed498d6636e28.ctex::
-::res://assets/Player2/shadow Animation 48x48/::1706949050
+::res://assets/Player2/shadow Animation 48x48/::1779365524
 shadow Animation 48x48.png::CompressedTexture2D::7164417161802377022::1706937511::1779365524::1::::<><><>0<>0<>9b7b1a10537922f6b0962d601f533e8c<>res://.godot/imported/shadow Animation 48x48.png-74f576b6d1de7b84fe4a9b23ef9deb25.ctex::
-::res://assets/Player2/Wall-slid Animation 48x48/::1706937520
+::res://assets/Player2/Wall-slid Animation 48x48/::1779365524
 Wall-slid Animation 48x48.png::CompressedTexture2D::2570732596911794734::1706937520::1779365524::1::::<><><>0<>0<>7819c29e39533983271f1c9e43a20816<>res://.godot/imported/Wall-slid Animation 48x48.png-44949b415f360aa472810e78c101d243.ctex::
-::res://assets/Player2/Wall-Touch & jump Animation 48x48/::1706937529
+::res://assets/Player2/Wall-Touch & jump Animation 48x48/::1779365524
 Wall-Touch & jump Animation 48x48.png::CompressedTexture2D::8603411471636786225::1706937529::1779365524::1::::<><><>0<>0<>986eb2aa3b97f4a13f5073fec0ef99c5<>res://.godot/imported/Wall-Touch & jump Animation 48x48.png-c9a6d4b5d9136da8d30dfcd33e1704a7.ctex::
-::res://assets/Player2/Wall-touch Animation 48x48/::1706937538
+::res://assets/Player2/Wall-touch Animation 48x48/::1779365524
 Wall-touch Animation 48x48.png::CompressedTexture2D::1795788445261048230::1706937538::1779365524::1::::<><><>0<>0<>2269bfa0916c69cfa140d35bd27762ea<>res://.godot/imported/Wall-touch Animation 48x48.png-42d166f25611924767c93ba095808533.ctex::
-::res://Scenes/::1779288716
-fighter.gd::GDScript::327383690906136205::1779288545::0::1::::Fighter<>CharacterBody2D<><>0<>0<><>::
-fighter.tscn::PackedScene::5061038106486918868::1779287634::0::1::::<><><>0<>0<><>::uid://b7vguftrh8y56::::res://assets/Player/6 - dash.png<>uid://ewt7xtcnpb3j::::res://Scenes/fighter.gd<>uid://ckiwwopoqwdwu::::res://assets/Player/13 - spetial dash.png<>uid://dvo3pampkyp8e::::res://assets/Player/12 - dash attack.png<>uid://4xj0j8xetrdc::::res://assets/Player/15 - death.png<>uid://bravpaimxt0ud::::res://assets/Player/8 - jump-down-attack.png<>uid://cmktntgatjp0d::::res://assets/Player/5 - fall.png<>uid://cpjnltp24yev8::::res://assets/Player/10 - attack 1.png<>uid://eih3krdk5itl::::res://assets/Player/11 - attack 3.png<>uid://bqmho4ptmbckc::::res://assets/Player/14 - hit.png<>uid://c7n3cnm4sqno::::res://assets/Player/1 - Idle.png<>uid://c03ktbtrq6j3o::::res://assets/Player/9 - idle-up-attack.png<>uid://dus7vharxbvor::::res://assets/Player/3 - jump.png<>uid://bi6t8o8mepn3n::::res://assets/Player/4 - mid-air.png<>uid://diry1fug2ixga::::res://assets/Player/2 - Run.png<>uid://dp0flgtaa74s7::::res://assets/Player/7 - jump-up-attack.png
-test.tscn::PackedScene::2220642619800666186::1779288716::0::1::::<><><>0<>0<><>::uid://b42nqby4ps6m7::::res://assets/b.png<>uid://cedus8i8jkj21::::res://Scenes/fighter.tscn
+::res://Scenes/::1779370025
+::res://Scenes/Player's/::1779370025
+fighter.gd::GDScript::327383690906136205::1779367137::0::1::::Fighter<>CharacterBody2D<><>0<>0<><>::
+fighter.tscn::PackedScene::5061038106486918868::1779370025::0::1::::<><><>0<>0<><>::uid://b7vguftrh8y56::::res://assets/Player/6 - dash.png<>uid://ewt7xtcnpb3j::::res://Scenes/Player's/fighter.gd<>uid://ckiwwopoqwdwu::::res://assets/Player/13 - spetial dash.png<>uid://dvo3pampkyp8e::::res://assets/Player/12 - dash attack.png<>uid://4xj0j8xetrdc::::res://assets/Player/15 - death.png<>uid://bravpaimxt0ud::::res://assets/Player/8 - jump-down-attack.png<>uid://cmktntgatjp0d::::res://assets/Player/5 - fall.png<>uid://cpjnltp24yev8::::res://assets/Player/10 - attack 1.png<>uid://eih3krdk5itl::::res://assets/Player/11 - attack 3.png<>uid://bqmho4ptmbckc::::res://assets/Player/14 - hit.png<>uid://c7n3cnm4sqno::::res://assets/Player/1 - Idle.png<>uid://c03ktbtrq6j3o::::res://assets/Player/9 - idle-up-attack.png<>uid://dus7vharxbvor::::res://assets/Player/3 - jump.png<>uid://bi6t8o8mepn3n::::res://assets/Player/4 - mid-air.png<>uid://diry1fug2ixga::::res://assets/Player/2 - Run.png<>uid://dp0flgtaa74s7::::res://assets/Player/7 - jump-up-attack.png
+::res://Scenes/test/::1779370022
+test.gdshader::Shader::8560078923808929311::1779369289::0::1::::<><><>0<>0<><>::
+test.tscn::PackedScene::2220642619800666186::1779370022::0::1::::<><><>0<>0<><>::uid://dt7tiqd2vly1d::::res://Scenes/test/test.gdshader<>uid://cedus8i8jkj21::::res://Scenes/fighter.tscn<>uid://b42nqby4ps6m7::::res://assets/b.png
+::res://Scenes/UI/::1779369998
+count_down.tscn::PackedScene::7611175890638968965::1779369998::0::1::::<><><>0<>0<><>::

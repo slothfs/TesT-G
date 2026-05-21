@@ -1,3 +1,8 @@
+Label
+CanvasLayer
+PointLight2D
+CanvasModulate
+ColorRect
 CollisionShape2D
 TileMap
 Camera2D
@@ -5,10 +10,6 @@ Sprite2D
 StaticBody2D
 AnimatedSprite2D
 CharacterBody2D
-PointLight2D
 AnimationPlayer
-CanvasModulate
 Area2D
 LightOccluder2D
-RayCast2D
-PinJoint2D

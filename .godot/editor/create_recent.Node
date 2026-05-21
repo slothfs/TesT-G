@@ -1,6 +1,10 @@
+CollisionShape2D
+TileMap
+Camera2D
+Sprite2D
+StaticBody2D
 AnimatedSprite2D
 CharacterBody2D
-CollisionShape2D
 PointLight2D
 AnimationPlayer
 CanvasModulate
@@ -8,7 +12,3 @@ Area2D
 LightOccluder2D
 RayCast2D
 PinJoint2D
-Line2D
-RigidBody2D
-StaticBody2D
-TileMapLayer

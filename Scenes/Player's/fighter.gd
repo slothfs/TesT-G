@@ -14,6 +14,10 @@ var health := 100
 
 var attacking := false
 var dashing := false
+var mouse_dashing := false
+var mouse_dash_target := Vector2.ZERO
+var mouse_dash_timer := 0.0
+const MOUSE_DASH_SPEED := 1200.0
 var hurt := false
 var dead := false
 
@@ -56,6 +60,22 @@ func _physics_process(delta: float) -> void:
 	if hurt:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED * delta * 10.0)
 		move_and_slide()
+		return
+
+	if mouse_dashing:
+		mouse_dash_timer -= delta
+		var dist = global_position.distance_to(mouse_dash_target)
+		if dist < 20.0 or mouse_dash_timer <= 0.0:
+			mouse_dashing = false
+			velocity = Vector2.ZERO
+		else:
+			velocity = global_position.direction_to(mouse_dash_target) * MOUSE_DASH_SPEED
+		
+		move_and_slide()
+		
+		if Engine.get_frames_drawn() % 3 == 0:
+			_create_ghost()
+			
 		return
 
 	if dashing:
@@ -127,11 +147,29 @@ func _handle_attack_input() -> void:
 
 	if Input.is_action_just_pressed("attack1"):
 
-		if attacking:
+		if attacking and not queued_attack:
 			queued_attack = true
 			return
 
-		_start_attack()
+		var mouse_pos = get_global_mouse_position()
+		
+		# If cursor is far, do the magic dash
+		if global_position.distance_to(mouse_pos) > 120.0:
+			mouse_dash_target = mouse_pos
+			mouse_dashing = true
+			mouse_dash_timer = 0.25
+			
+			attacking = true
+			dashing = false
+			queued_attack = false
+			combo = 0
+			combo_timer = 0.0
+			
+			sprite.flip_h = mouse_dash_target.x < global_position.x
+			sprite.play("dash_attack")
+		else:
+			# If cursor is close, do normal M1 and directional attacks
+			_start_attack()
 
 	if Input.is_action_just_pressed("attack2") and not attacking:
 
@@ -299,3 +337,20 @@ func set_locked(state: bool):
 	# stop movement when locked
 	if state:
 		velocity = Vector2.ZERO
+
+func _create_ghost() -> void:
+	if not sprite.sprite_frames: return
+	var ghost = Sprite2D.new()
+	var tex = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
+	if not tex: return
+	ghost.texture = tex
+	ghost.global_position = sprite.global_position
+	ghost.scale = sprite.scale
+	ghost.flip_h = sprite.flip_h
+	ghost.modulate = Color(0.5, 0.5, 1.0, 0.8) # Purplish/bluish ghost
+	
+	get_tree().current_scene.add_child(ghost)
+	
+	var tween = create_tween()
+	tween.tween_property(ghost, "modulate:a", 0.0, 0.3)
+	tween.tween_callback(ghost.queue_free)

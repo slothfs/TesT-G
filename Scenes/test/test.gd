@@ -1,6 +1,7 @@
 extends Node
 
 @onready var CountdownScene = preload("res://Scenes/UI/count_down.tscn")
+@onready var cursor = preload("res://Scenes/UI/cursor.tscn").instantiate()
 
 func _ready():
 	var countdown = CountdownScene.instantiate()
@@ -13,6 +14,7 @@ func _ready():
 	)
 
 	countdown.start()
+	add_child(cursor)
 	
 func _process(delta):
 	if Input.is_action_just_pressed("reload"):

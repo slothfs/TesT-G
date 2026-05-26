@@ -37,7 +37,7 @@ position = Vector2(497, 607)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=2122635100]
 position = Vector2(58, -40)
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1219214598]

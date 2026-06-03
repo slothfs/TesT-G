@@ -1,24 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhryws6y7edn2"]
+[gd_scene format=3 uid="uid://dhryws6y7edn2"]
 
 [ext_resource type="Script" uid="uid://bor2i1klnmw6h" path="res://Scenes/UI/cursor.gd" id="1_2k2pw"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2k2pw"]
-load_path = "res://.godot/imported/cursor.png-224f93d013e0812359a323dac1948615.ctex"
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glow"]
-blend_mode = 1
-
 [sub_resource type="Gradient" id="Gradient_light"]
-offsets = PackedFloat32Array(0, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_light"]
 gradient = SubResource("Gradient_light")
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.8)
-width = 256
-height = 256
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glow"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_particles"]
+colors = PackedColorArray(0.6, 0, 1, 1, 0, 0.5, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_particles"]
+gradient = SubResource("Gradient_particles")
 
 [sub_resource type="Curve" id="Curve_particles"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0, 0.0, 0, 0]
@@ -26,12 +28,6 @@ point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_particles"]
 curve = SubResource("Curve_particles")
-
-[sub_resource type="Gradient" id="Gradient_particles"]
-colors = PackedColorArray(0.6, 0.0, 1.0, 1, 0, 0.5, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_particles"]
-gradient = SubResource("Gradient_particles")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_magical"]
 particle_flag_disable_z = true
@@ -43,32 +39,35 @@ scale_max = 0.08
 scale_curve = SubResource("CurveTexture_particles")
 color_ramp = SubResource("GradientTexture1D_particles")
 
-[node name="CursorLayer" type="CanvasLayer"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2k2pw"]
+load_path = "res://.godot/imported/cursor.png-224f93d013e0812359a323dac1948615.ctex"
+
+[node name="CursorLayer" type="CanvasLayer" unique_id=1544470947]
 layer = 128
 
-[node name="Cursor" type="Node2D" parent="."]
+[node name="Cursor" type="Node2D" parent="." unique_id=1095505996]
 script = ExtResource("1_2k2pw")
 
-[node name="PointLight2D" type="PointLight2D" parent="Cursor"]
+[node name="PointLight2D" type="PointLight2D" parent="Cursor" unique_id=581087977]
 color = Color(0.8, 0.6, 1, 1)
-energy = 1.5
+energy = 0.2
 texture = SubResource("GradientTexture2D_light")
 texture_scale = 1.5
 
-[node name="GlowSprite" type="Sprite2D" parent="Cursor"]
-modulate = Color(0.7, 0.0, 1.0, 0.5)
+[node name="GlowSprite" type="Sprite2D" parent="Cursor" unique_id=2143925536]
+modulate = Color(0.7, 0, 1, 0.5)
 material = SubResource("CanvasItemMaterial_glow")
 scale = Vector2(0.8, 0.8)
 texture = SubResource("GradientTexture2D_light")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Cursor"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Cursor" unique_id=628133718]
 amount = 40
-process_material = SubResource("ParticleProcessMaterial_magical")
 texture = SubResource("GradientTexture2D_light")
 lifetime = 0.8
 speed_scale = 1.2
+process_material = SubResource("ParticleProcessMaterial_magical")
 
-[node name="1" type="Sprite2D" parent="Cursor"]
+[node name="1" type="Sprite2D" parent="Cursor" unique_id=1053000990]
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.04, 0.04)
 texture = SubResource("CompressedTexture2D_2k2pw")

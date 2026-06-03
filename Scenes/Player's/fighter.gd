@@ -31,7 +31,20 @@ var dash_direction := 1.0
 var max_jumps := 2
 var jumps_left := 2
 
+# --- NEW FEATURES STATE ---
+var is_sticking := false
+var stick_normal := Vector2.ZERO
+var is_climbing_obstacle := false
+var current_mode := 0 # 0 = Fighter, 1 = Assister
+var can_switch := true
+
+var cooldown_timer := 0.0
+
+@export var assister_scene_path: String = "res://Scenes/Player's/assiter.tscn"
+var assister_instance: Node2D = null
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var col_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	_setup_animations()
@@ -40,9 +53,33 @@ func _ready() -> void:
 	sprite.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta: float) -> void:
+	if current_mode == 1:
+		if is_instance_valid(assister_instance):
+			global_position = assister_instance.global_position
+			
+		if Input.is_action_just_pressed("switch_player"):
+			_revert_to_fighter()
+			return
+			
+		return # Stop processing Fighter physics while Assister is active
+
+	elif not can_switch:
+		cooldown_timer -= delta
+		if cooldown_timer <= 0.0:
+			can_switch = true
+
+	if Input.is_action_just_pressed("switch_player"):
+		_switch_to_assister()
+		
+	if Input.is_action_just_pressed("climb_obstacle") and not is_climbing_obstacle:
+		_start_obstacle_climb()
 
 	if dead:
 		velocity.y += gravity * delta
+		move_and_slide()
+		return
+
+	if is_climbing_obstacle:
 		move_and_slide()
 		return
 
@@ -302,6 +339,10 @@ func _setup_inputs() -> void:
 
 	_add_key("jump", KEY_SPACE)
 	_add_key("dash", KEY_SHIFT)
+	
+	_add_key("climb_obstacle", KEY_O)
+	_add_key("switch_player", KEY_Q)
+	_add_key("wall_stick", KEY_SHIFT)
 
 	_add_mouse("attack1", MOUSE_BUTTON_LEFT)
 	_add_mouse("attack2", MOUSE_BUTTON_RIGHT)
@@ -354,3 +395,64 @@ func _create_ghost() -> void:
 	var tween = create_tween()
 	tween.tween_property(ghost, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(ghost.queue_free)
+
+func _start_obstacle_climb() -> void:
+	is_climbing_obstacle = true
+	attacking = false
+	dashing = false
+	velocity = Vector2.ZERO
+	
+	if sprite.sprite_frames.has_animation("climb"):
+		sprite.play("climb")
+		
+	if is_instance_valid(col_shape):
+		col_shape.disabled = true
+		
+	await get_tree().create_timer(1.0).timeout
+	
+	if sprite.sprite_frames.has_animation("climb_once"):
+		sprite.play("climb_once")
+		
+	await get_tree().create_timer(0.5).timeout
+	
+	if is_instance_valid(col_shape):
+		col_shape.disabled = false
+		
+	is_climbing_obstacle = false
+
+func _switch_to_assister() -> void:
+	if not can_switch or current_mode == 1:
+		return
+		
+	current_mode = 1
+	can_switch = false
+	
+	var assister_pack = load(assister_scene_path)
+	if assister_pack:
+		assister_instance = assister_pack.instantiate()
+		get_parent().add_child(assister_instance)
+		assister_instance.global_position = global_position
+		
+		# Hide fighter and disable collision
+		sprite.visible = false
+		if is_instance_valid(col_shape):
+			col_shape.disabled = true
+			
+		print("Switched to Assister")
+
+func _revert_to_fighter() -> void:
+	if current_mode == 0: return
+	
+	current_mode = 0
+	cooldown_timer = 1.0
+	can_switch = false
+	
+	if is_instance_valid(assister_instance):
+		global_position = assister_instance.global_position
+		assister_instance.queue_free()
+		
+	sprite.visible = true
+	if is_instance_valid(col_shape):
+		col_shape.disabled = false
+		
+	print("Reverted to Fighter")

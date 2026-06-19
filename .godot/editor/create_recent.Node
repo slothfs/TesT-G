@@ -1,14 +1,14 @@
+Label
+Camera2D
+Sprite2D
 CollisionShape2D
 AnimatedSprite2D
 CharacterBody2D
 CanvasModulate
-Sprite2D
 PointLight2D
-Label
 CanvasLayer
 ColorRect
 TileMap
-Camera2D
 StaticBody2D
 AnimationPlayer
 Area2D

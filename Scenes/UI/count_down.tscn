@@ -8,6 +8,7 @@ script = ExtResource("1_x4l84")
 
 [node name="Label" type="Label" parent="." unique_id=1430611779]
 process_mode = 3
+texture_filter = 2
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

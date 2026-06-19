@@ -45,6 +45,7 @@ var assister_instance: Node2D = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var col_shape: CollisionShape2D = $CollisionShape2D
+@onready var light: PointLight2D = $PointLight2D
 
 func _ready() -> void:
 	_setup_animations()
@@ -136,6 +137,11 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)
+
+	# Keep light ahead of player
+	if is_instance_valid(light):
+		var offset_x = -60.0 if sprite.flip_h else 60.0
+		light.position.x = lerp(light.position.x, offset_x, delta * 15.0)
 
 	_update_animation(direction)
 

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cm15m6a30qjy7"]
+
+[ext_resource type="Script" uid="uid://erv0x0md1q0e" path="res://Scenes/UI/label/label_pop_up.gd" id="1_rrfq2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_who1i"]
+radius = 235.3083
+
+[node name="LabelPopUp" type="Area2D" unique_id=1140848983]
+script = ExtResource("1_rrfq2")
+
+[node name="detector" type="CollisionShape2D" parent="." unique_id=776490720]
+shape = SubResource("CircleShape2D_who1i")
+
+[node name="Label" type="Label" parent="." unique_id=1570902207]
+offset_left = -173.0
+offset_top = -144.0
+offset_right = 205.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 100
+text = "Example"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

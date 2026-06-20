@@ -1,7 +1,8 @@
 Label
+CollisionShape2D
+Area2D
 Camera2D
 Sprite2D
-CollisionShape2D
 AnimatedSprite2D
 CharacterBody2D
 CanvasModulate
@@ -11,4 +12,3 @@ ColorRect
 TileMap
 StaticBody2D
 AnimationPlayer
-Area2D

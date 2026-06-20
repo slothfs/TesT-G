@@ -572,10 +572,9 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lnehm"]
 gradient = SubResource("Gradient_mudqe")
-fill_from = Vector2(0, 0)
-fill_to = Vector2(1, 0)
 
 [node name="Fighter" type="CharacterBody2D" unique_id=418160477]
+z_index = 10
 script = ExtResource("1_v3script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1877573380]
